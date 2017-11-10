@@ -1,0 +1,29 @@
+{
+    "name": "next-server",
+    "version": "1.0.0",
+    "scripts": {
+        "dev": "next",
+        "build": "next build",
+        "start": "next start",
+        "server": "node server"
+    },
+    "dependencies": {
+        "axios": "0.16.2",
+        "express": "^4.14.0",
+        "express-http-proxy": "1.0.6",
+        "immutable": "^3.8.2",
+        "lodash": "4.17.4",
+        "next": "latest",
+        "next-redux-wrapper": "^1.3.4",
+        "next-url-prettifier": "^1.0.2",
+        "react": "^16.0.0",
+        "react-dom": "^16.0.0",
+        "react-redux": "5.0.6",
+        "redux": "3.7.2",
+        "redux-thunk": "2.2.0"
+    },
+    "devDependencies": {
+        "sw-precache-webpack-plugin": "^0.11.4"
+    },
+    "license": "ISC"
+}
