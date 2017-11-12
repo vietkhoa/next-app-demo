@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchAdmins } from '../actions';
 import requireAuth from '../components/hocs/requireAuth';
 import withRedux from 'next-redux-wrapper'
+import UltimateRoot from '../components/hocs/ultimateRoot'
 import initStore from '../utils/createStore';
 
 class AdminsListPage extends Component {
@@ -34,4 +35,4 @@ function mapStateToProps({ admins }) {
   return { admins };
 }
 
-export default withRedux(initStore, mapStateToProps, { fetchAdmins })( requireAuth(AdminsListPage))
+export default withRedux(initStore, mapStateToProps, { fetchAdmins })((UltimateRoot(requireAuth(AdminsListPage))))

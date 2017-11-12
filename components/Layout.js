@@ -4,7 +4,14 @@ import Head from 'next/head'
 
 import { connect } from 'react-redux';
 
-const Layout = ({ children }) => {
+const Layout = ({ children, auth }) => {
+
+    const authButton = auth ? (
+        <a href="/api/logout">Logout</a>
+      ) : (
+        <a href="/api/auth/google">Login</a>
+      );
+    
 
     return (
         <div>
@@ -22,20 +29,21 @@ const Layout = ({ children }) => {
                     </Link>
                     <ul className="right">
                         <li>
-                            <Link href='/test' as ='/about'>
+                            <Link href='/about' as ='/about'>
                                 <a> About</a>
                             </Link>
                         </li>
                         <li>
-                            <Link href='/userlist' as ='/user'>
+                            <Link href='/user' as ='/user'>
                                 <a> User</a>
                             </Link>
                         </li>
                         <li>
-                            <Link href='/adminlist' as='/admin'>
+                            <Link href='/admin' as='/admin'>
                                 <a>Admin</a>
                             </Link>
                         </li>
+                        <li>{authButton}</li>
                     </ul>
                 </div>
             </nav>
@@ -46,5 +54,8 @@ const Layout = ({ children }) => {
     );
 };
 
-
-export default Layout;
+function mapStateToProps({ auth }) {
+    return { auth };
+  }
+  
+export default connect(mapStateToProps)(Layout);

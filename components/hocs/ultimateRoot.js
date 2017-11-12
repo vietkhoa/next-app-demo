@@ -8,16 +8,12 @@ import { fetchUsers, fetchCurrentUser } from '../../actions';
 
 export default ChildComponent => {
     class UltimateRoot extends Component {
-        static async getInitialProps({ store, isServer, req }) {
-            if (isServer) {
-                if (req.path == "/user") {
-                    console.log("dispatch user")
-                    await store.dispatch(fetchUsers())
-                }
+        static async getInitialProps (context) {
+            if(context.isServer){
+            await context.store.dispatch(fetchCurrentUser())
             }
-            store.dispatch(fetchCurrentUser())
-            return { isServer }
-        }
+            return ChildComponent.getInitialProps(context)
+          }
 
         render() {
             return (
@@ -28,5 +24,9 @@ export default ChildComponent => {
         }
     }
 
-    return withRedux(initStore)(UltimateRoot);
+    function mapStateToProps(state) {
+  return { users: state.users };
+}
+
+    return connect(mapStateToProps,{fetchUsers})(UltimateRoot)
 };

@@ -2,7 +2,7 @@
     "name": "next-server",
     "version": "1.0.0",
     "scripts": {
-        "dev": "next",
+        "dev": "next -s server.js",
         "build": "next build",
         "start": "next start",
         "server": "node server"

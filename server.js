@@ -32,6 +32,7 @@ app.prepare()
   }
   ))
 
+
   server.get('*', (req, res) => handle(req, res))
   
   server.listen(PORT, (err) => {

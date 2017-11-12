@@ -3,7 +3,7 @@ const UrlPrettifier = require('next-url-prettifier').default
 const routes = [
   {
     page: 'index',
-    prettyUrl: '/home'
+    prettyUrl: '/'
   },
   {
     page: 'test',
