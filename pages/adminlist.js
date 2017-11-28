@@ -10,7 +10,7 @@ class AdminsListPage extends Component {
 
     static async getInitialProps({ store, isServer, req }) {
         // if(isServer){
-        await store.dispatch(fetchAdmins())
+        await store.dispatch(fetchAdmins)
         // }
         return { isServer }
       }

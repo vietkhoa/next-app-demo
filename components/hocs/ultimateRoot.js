@@ -24,9 +24,5 @@ export default ChildComponent => {
         }
     }
 
-    function mapStateToProps(state) {
-  return { users: state.users };
-}
-
-    return connect(mapStateToProps,{fetchUsers})(UltimateRoot)
+    return connect(null,{fetchUsers})(UltimateRoot)
 };

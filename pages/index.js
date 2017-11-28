@@ -1,9 +1,12 @@
-
-import Layout from '../components/Layout'
-import UltimateRoot from '../components/hocs/ultimateRoot'
 import withRedux from 'next-redux-wrapper'
-import initStore from '../utils/createStore';
 import React, { Component } from 'react';
+
+import initStore from '../utils/createStore';
+import Layout from '../components/Layout';
+import UltimateRoot from '../components/hocs/ultimateRoot';
+import Section1 from '../components/index/Section1'
+import Section2 from '../components/index/Section2'
+import Section3 from '../components/index/Section3'
 
 class Home extends Component {
 
@@ -12,16 +15,17 @@ class Home extends Component {
   }
 
   render() {
-  return(  <div className="center-align" style={{ marginTop: '200px' }}>
-      <h3>Welcome</h3>
-      <p>Check out these awesome features</p>
+  const {movies} = this.props;
+  return(  <div>
+        <Section1 />
+        <Section2 movies={movies}/>
+        <Section3 movies={movies}/>
     </div>)
   }
 }
 
-function mapStateToProps(state) {
-  console.log(state)
-  return { users: state.users };
+function mapStateToProps({movies}) {
+  return { movies };
 }
 
-export default withRedux(initStore,mapStateToProps)(UltimateRoot(Home))
+export default withRedux(initStore,mapStateToProps,)(UltimateRoot(Home))

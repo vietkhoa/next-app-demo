@@ -20,9 +20,4 @@ class About extends Component {
 }
 }
 
-function mapStateToProps(state) {
-  console.log(state)
-  return { users: state.users };
-}
-
-export default withRedux(initStore,mapStateToProps)(UltimateRoot(About))
+export default withRedux(initStore)(UltimateRoot(About))

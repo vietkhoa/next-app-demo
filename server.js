@@ -3,13 +3,17 @@ const next = require('next');
 const { parse } = require('url');
 const proxy = require ('express-http-proxy');
 
-const DEV = process.env.ENVIRONMENT !== 'production';
+const DEV = process.env.NODE_ENV !== 'production';
 const PORT = process.env.PORT || 3000;
+
+console.log(DEV, process.env.ENVIRONMENT)
 
 const app = next({dir: '.', dev: DEV});
 const handle = app.getRequestHandler();
 
-const Router = require('./utils/routes').Router;
+const routes = require('./utils/routes').Router;
+
+// const handler = routes.getRequestHandler(app)
 
 
 app.prepare()
@@ -26,14 +30,14 @@ app.prepare()
     })
   );
 
-  Router.forEachPattern((page, pattern, defaultParams) => server.get(pattern, (req, res) =>{
+  routes.forEachPattern((page, pattern, defaultParams) => server.get(pattern, (req, res) =>{
     app.render(req, res, `/${page}`, Object.assign({}, defaultParams, req.query, req.params))
     return;
   }
   ))
 
-
   server.get('*', (req, res) => handle(req, res))
+
   
   server.listen(PORT, (err) => {
     if (err) throw err;
